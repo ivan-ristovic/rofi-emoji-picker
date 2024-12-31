@@ -19,6 +19,7 @@ Benefits:
 - works even for applications that do not have emoji support
 - no limits on the amount of emojis
 - can be used for gifs, stickers, and all kinds of links/reactions, not just emojis
+- version-controlled content
 
 ## Setup
 

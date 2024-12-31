@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 url=$1
 shift
 
@@ -8,5 +10,5 @@ export EMOJI_PICKER_URL="$url"
 rofi \
     --show-icons \
     "$@" \
-    -show Emojis -modes "Emojis:$PWD/picker"
+    -show Emojis -modes "Emojis:$SCRIPT_DIR/picker"
 

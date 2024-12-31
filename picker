@@ -3,7 +3,7 @@
 import os
 import sys
 
-url = os.getenv("")
+url = os.getenv("EMOJI_PICKER_URL")
 if not url:
     print("EMOJI_PICKER_URL not set")
     exit(1)
@@ -26,7 +26,6 @@ rofi_retv = int(rofi_retv)
 
 if rofi_retv == 0:
     def load_entries(list_path):
-        list_path = os.path.join(os.getcwd(), os.pardir, list_path)
         entries = []
         try:
             with open(list_path, 'r') as f:
@@ -37,7 +36,7 @@ if rofi_retv == 0:
 
     entries = load_entries("list.txt")
     for e in entries:
-        e = f'../{e.strip()}'
+        e = e.strip()
         rofi_row_fmt(e, 'icon', e, 'blub')
 elif rofi_retv == 1:
     def clip(s, p=True, c=True):

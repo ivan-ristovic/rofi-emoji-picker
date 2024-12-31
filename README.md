@@ -40,12 +40,12 @@ GitHug pages setup steps:
 $ git submodule add https://github.com/ivan-ristovic/rofi-emoji-picker _picker
 ```
 4. Execute the `update-list` script - this will generate the `list.txt` file will all your content. This wll be used by rofi when presenting the option list.
-1. Launch the picker:
+5. Launch the picker:
 ```bash
 $ ./_picker/launch "my.github.pages.domain" <custom_rofi_options>
 ```
-5. Pick an emoji and verify that the URL is copied to your clipboard.
-6. You can now keybind the script (i3 example below).
+6. Pick an emoji and verify that the URL is copied to your clipboard.
+7. You can now keybind the script (i3 example below).
 
 ### i3 keybinding
 

@@ -74,3 +74,15 @@ cd "$emoji_picker_dir" && \
 New content can be added using `store` script. Refer to the script for details.
 
 After adding new content, run the `update-list` script to regenerate `list.txt`.
+
+## Tips
+
+1. Naming your emojis like follows will allow you to use spaces in search seemlessly:
+```
+foo-bar
+```
+2. Grouping emojis by category:
+```
+s-... (static)
+a-... (animated)
+```

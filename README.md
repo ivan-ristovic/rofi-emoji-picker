@@ -25,7 +25,7 @@ Benefits:
 
 You will need a static website to host the images. This can be your own host, or, as in the rest of this guide, GitHub pages.
 
-GitHug pages setup steps:
+GitHub pages setup steps:
 1. Prepare a GitHub repository with support for static GitHub pages (no Jekyll).
     1. Optional: Add a custom domain, e.g., `cdn.mydomain.com`
 2. Structure the repository as follows:

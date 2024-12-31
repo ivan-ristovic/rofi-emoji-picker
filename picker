@@ -1,0 +1,57 @@
+#!/usr/bin/env python
+
+import os
+import sys
+
+url = os.getenv("")
+if not url:
+    print("EMOJI_PICKER_URL not set")
+    exit(1)
+
+
+def entry_to_url(e):
+    return f'{url}/{e}'
+
+
+def rofi_row_fmt(v, *args):
+    args = '\x1f'.join(args)
+    print(v, '\x00', args, '\n', sep='')
+
+
+rofi_retv = os.getenv("ROFI_RETV")
+if rofi_retv is None:
+    sys.exit(1)
+
+rofi_retv = int(rofi_retv)
+
+if rofi_retv == 0:
+    def load_entries(list_path):
+        list_path = os.path.join(os.getcwd(), os.pardir, list_path)
+        entries = []
+        try:
+            with open(list_path, 'r') as f:
+                entries = f.readlines()
+        except IOError as e:
+            print(e)
+        return entries
+
+    entries = load_entries("list.txt")
+    for e in entries:
+        e = f'../{e.strip()}'
+        rofi_row_fmt(e, 'icon', e, 'blub')
+elif rofi_retv == 1:
+    def clip(s, p=True, c=True):
+        from subprocess import Popen, PIPE
+        args = ['xsel']
+        if p:
+            args.append('-pi')
+        if c:
+            args.append('-bi')
+        p = Popen(args, stdin=PIPE)
+        p.communicate(input=s.encode('utf-8'))
+
+    picked = sys.argv[1]
+    url = entry_to_url(picked)
+    clip(url)
+else:
+    print(f'Unknown rofi retv value: {rofi_retv}')

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+url=$1
+shift
+
+export EMOJI_PICKER_URL="$url"
+
+rofi \
+    --show-icons \
+    "$@" \
+    -show Emojis -modes "Emojis:$PWD/picker"
+

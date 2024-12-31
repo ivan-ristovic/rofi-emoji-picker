@@ -1,0 +1,20 @@
+#!/bin/bash
+
+list="list.txt"
+dirs=(
+    emotes/
+    gifs/
+    stickers/
+)
+
+echo "Entries before update: $(cat $list | wc -l)"
+
+rm $list
+touch $list
+
+for dir in "${dirs[@]}"; do
+    echo "scanning $dir"
+    find "$dir" -type f | sort >> $list
+done
+
+echo "Entries after update: $(cat $list | wc -l)"

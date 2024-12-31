@@ -1,0 +1,58 @@
+#!/bin/bash
+
+if [ $# -lt 2 ]; then
+    echo "usage: $(basename $0) (a|s)emoji|gif|sticker /image/path [imagemagick args...]"
+    exit 1
+fi
+
+cmd="$1"
+img="$2"
+img_name=$(basename "${img%.*}")
+shift 2
+
+declare -A sizes
+sizes[emoji]="96x96"
+sizes[gif]="256x256"
+sizes[sticker]="512x512"
+
+function conv () 
+{
+    type=$1
+    size=$2
+    out=$3
+    shift 3
+    case "$type" in
+        png)
+            echo "Note: Not tested!"
+            set -x;
+            convert -resize "$size" -unsharp 2x1.4+0.5+0 -quality 100 -verbose "$img" "$out"."$type" "$@"
+            set +x;
+            ;;
+        gif)
+            set -x;
+            convert "$img" -coalesce -scale "$size" -fuzz 7% +dither -remap "$img"[0] -layers 'optimize' "$out"."$type" "$@"
+            set +x;
+            ;;
+    esac
+}
+
+case "$cmd" in
+    aemoji*)
+        conv gif "${sizes[emoji]}" ./emotes/"$img_name" "$@"
+        ;;
+    semoji* | emoji*)
+        conv png "${sizes[emoji]}" ./emotes/"$img_name" "$@"
+        ;;
+    gif*)
+        conv gif "${sizes[gif]}" ./gifs/"$img_name" "$@"
+        ;;
+    sticker*)
+        conv png "${sizes[sticker]}" ./stickers/"$img_name" "$@"
+        ;;
+    *)
+        echo "unknown type: $cmd"
+        exit 1
+        ;;
+esac
+
+./update-list

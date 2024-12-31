@@ -27,7 +27,7 @@ You will need a static website to host the images. This can be your own host, or
 GitHug pages setup steps:
 1. Prepare a GitHub repository with support for static GitHub pages (no Jekyll).
     1. Optional: Add a custom domain, e.g., `cdn.mydomain.com`
-1. Structure the repository as follows:
+2. Structure the repository as follows:
 ```
 .
 ├── emojis      // your emojis
@@ -35,17 +35,17 @@ GitHug pages setup steps:
 ├── stickers    // your stickers
 └── ...         // additional files you might want to add
 ```
-1. Add `rofi-emoji-picker` as a submodule:
+3. Add `rofi-emoji-picker` as a submodule:
 ```bash
 $ git submodule add https://github.com/ivan-ristovic/rofi-emoji-picker _picker
 ```
-1. Execute the `update-list` script - this will generate the `list.txt` file will all your content. This wll be used by rofi when presenting the option list.
+4. Execute the `update-list` script - this will generate the `list.txt` file will all your content. This wll be used by rofi when presenting the option list.
 1. Launch the picker:
 ```bash
 $ ./_picker/launch "my.github.pages.domain" <custom_rofi_options>
 ```
-1. Pick an emoji and verify that the URL is copied to your clipboard.
-1. You can now keybind the script (i3 example below).
+5. Pick an emoji and verify that the URL is copied to your clipboard.
+6. You can now keybind the script (i3 example below).
 
 ### i3 keybinding
 
@@ -68,3 +68,8 @@ cd "$emoji_picker_dir" && \
     ./_picker/launch "https://cdn.ristovic.net" -theme "$HOME/.config/rofi/launchers/type-3/style-5.rasi"
 ```
 
+## Adding new emojis
+
+New content can be added using `store` script. Refer to the script for details.
+
+After adding new content, run the `update-list` script to regenerate `list.txt`.

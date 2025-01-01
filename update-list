@@ -1,10 +1,12 @@
 #!/bin/bash
 
-list="../list.txt"
+cd ..
+
+list="list.txt"
 dirs=(
-    ../emotes/
-    ../gifs/
-    ../stickers/
+    emotes/
+    gifs/
+    stickers/
 )
 
 echo "Entries before update: $(cat $list | wc -l)"

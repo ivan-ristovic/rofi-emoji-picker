@@ -38,16 +38,16 @@ function conv ()
 
 case "$cmd" in
     aemoji*)
-        conv gif "${sizes[emoji]}" ./emotes/"$img_name" "$@"
+        conv gif "${sizes[emoji]}" ../emotes/"$img_name" "$@"
         ;;
     semoji* | emoji*)
-        conv png "${sizes[emoji]}" ./emotes/"$img_name" "$@"
+        conv png "${sizes[emoji]}" ../emotes/"$img_name" "$@"
         ;;
     gif*)
-        conv gif "${sizes[gif]}" ./gifs/"$img_name" "$@"
+        conv gif "${sizes[gif]}" ../gifs/"$img_name" "$@"
         ;;
     sticker*)
-        conv png "${sizes[sticker]}" ./stickers/"$img_name" "$@"
+        conv png "${sizes[sticker]}" ../stickers/"$img_name" "$@"
         ;;
     *)
         echo "unknown type: $cmd"

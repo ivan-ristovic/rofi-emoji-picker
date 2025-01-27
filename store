@@ -30,7 +30,7 @@ function conv ()
             ;;
         gif)
             set -x;
-            convert "$img" -coalesce -scale "$size" -fuzz 7% +dither -remap "$img"[0] -layers 'optimize' "$out"."$type" "$@"
+            convert "$img" -coalesce -scale "$size" -fuzz 1% +dither -remap "$img"[0] -layers 'optimize' "$out"."$type" "$@"
             set +x;
             ;;
     esac
